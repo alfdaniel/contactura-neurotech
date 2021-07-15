@@ -16,6 +16,12 @@ loginForm = new FormGroup({
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    console.log('olá, componente iniciado')
+    document.querySelector('html').style.background = 'linear-gradient(to right, red , blue)'
+  }
+
+  ngOnDestroy(){
+   document.querySelector('html').style.background = 'none'
   }
 
   login(){
