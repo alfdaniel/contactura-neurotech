@@ -1,1 +1,36 @@
-<p>form-usuarios works!</p>
+<app-navbar></app-navbar>
+<section>
+    <div class="titulo">
+        <span> Novo User </span>
+    </div>
+</section>
+
+<section class="formulario">
+    <form>
+        <div>
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput placeholder="Email:" type="email">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Senha:" type="password">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Nome:" type="text">
+                </mat-form-field>
+                <div>
+                    <mat-checkbox>Administrador?</mat-checkbox>
+                </div>
+            </mat-card-content>
+        </div>
+
+        <div class="button_new_contact">
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Salvar Contato</button>
+                <button mat-raised-button color="primary">Cancelar</button>
+            </mat-card-actions>
+        </div>
+        
+    </form>
+
+</section>

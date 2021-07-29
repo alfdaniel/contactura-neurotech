@@ -1,1 +1,33 @@
-<p>form-contatos works!</p>
+<app-navbar></app-navbar>
+<section>
+    <div class="titulo">
+        <span> Novo Contato </span>
+    </div>
+</section>
+
+<section class="formulario">
+    <form>
+        <div>
+            <mat-card-content>
+                <mat-form-field class="name">
+                    <input matInput placeholder="Name:" type="text">
+                </mat-form-field>
+                <mat-form-field class="fone">
+                    <input matInput placeholder="Fone:" type="number">
+                </mat-form-field>
+                <mat-form-field class="email">
+                    <input matInput placeholder="Email:" type="email">
+                </mat-form-field>
+            </mat-card-content>
+        </div>
+
+        <div class="button_new_contact">
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Salvar Contato</button>
+                <button mat-raised-button color="primary">Cancelar</button>
+            </mat-card-actions>
+        </div>
+
+    </form>
+
+</section>

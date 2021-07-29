@@ -14,6 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -24,7 +27,8 @@ import { MatButtonModule } from '@angular/material/button';
     ListaUsuariosComponent,
     FormUsuariosComponent,
     FormContatosComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

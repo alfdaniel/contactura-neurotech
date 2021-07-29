@@ -1,11 +1,11 @@
 :host {
     display: flex;
     justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // margin-right: -50%;
+    // transform: translate(-50%, -50%);
 }
 
 .example-card{
@@ -33,4 +33,13 @@
     img{
         width: 200px;
     }
+}
+
+.container-login{
+    width: 100vw;
+    height: 100vh;
+    background: darkorchid;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }

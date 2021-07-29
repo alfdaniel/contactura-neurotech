@@ -10,6 +10,7 @@ export class ListaUsuariosComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

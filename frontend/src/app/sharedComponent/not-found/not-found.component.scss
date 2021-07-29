@@ -1,72 +1,101 @@
 :host {
-    display: flex;
-    justify-content: center;
-    margin-top: auto;
-    background-image: url(../../../assets/img/universo.png);
-    //background: no-repeat;
 }
 
-.principal {
+* {
     display: block;
+    justify-content: center;
+}
+
+.total {
+    display: block;
+    justify-content: center;
+    width: auto;
+    background-image: url(../../../assets/img/universo.png);
+    width: 100vw;
+    height: 100vh;
 }
 
 .universo span {
     display: flex;
     justify-content: center;
-    position: relative;
-    font-size: 80px;
-    padding: 15px;
-    padding-top: 50px;
+    font-size: 35px;
+    padding-top: 20px;
     font-family: fantasy;
-    color: white;
+    color: rgb(255, 255, 255);
     transform: rotateY(180deg);
 }
 
-  .flipper{
-	width: 100%;
+.flipper {
+    width: 100%;
     transition: transform 0.2s;
 }
 
-.universo:hover .flipper{
-	transform: rotateY(180deg);
+.universo:hover .flipper {
+    transform: rotateY(180deg);
+}
+
+.sec-pesonagens {
+    display: block;
+    justify-content: center;
+    margin-top: 10px;
+
+    // .personagens{
+    //     display: block;
+    //     justify-content: center;
+    // }
+
+    img {
+        width: 350px;
+    }
 }
 
 .spok {
-    position: absolute;
     display: flex;
-    top: 120px;
-    left: 100px;
-}
 
-.spok img {
-    max-width: 500px;
-    max-height: 1000 px;
-    width: auto;
-    height: auto;
-    position: relative;
-    animation-name: example;
-    animation-duration: 2s;
-    animation-iteration-count: 1000;
+    img {
+        //max-width: 500px;
+        //max-height: 1000 px;
+        //width: auto;
+        //height: auto;
+        position: relative;
+        animation-name: example;
+        animation-duration: 2s;
+        animation-iteration-count: 1000;
+    }
 }
 
 @keyframes example {
-    0% {background-position: none; left: 0px; top: 0px;}
-    25% {background-color: none; left: 5px; top: -1px;}
-    50% {background-color: none; left: 10px; top: -2px;}
-    100% {background-color: none; left: 5px; top: -1px;}
+    0% {
+        background-position: none;
+        left: 0px;
+        top: 0px;
+    }
+    25% {
+        background-color: none;
+        left: 5px;
+        top: -1px;
+    }
+    50% {
+        background-color: none;
+        left: 10px;
+        top: -2px;
+    }
+    100% {
+        background-color: none;
+        left: 5px;
+        top: -1px;
+    }
 }
 
 .yoda {
-    position: absolute;
-    top: 150px;
-    right: 100px;
+    display: flex;
 }
 
 .yoda img {
-    max-width: 500px;
-    max-height: 1000 px;
-    width: auto;
-    height: auto;
+    // max-width: 500px;
+    // max-height: 1000 px;
+    // width: auto;
+    // height: auto;
     position: relative;
     animation-name: yodafloter;
     animation-duration: 2s;
@@ -74,65 +103,131 @@
 }
 
 @keyframes yodafloter {
-    0% {background-position: none; left: 0px; top: 0px;}
-    25% {background-color: none; left: 5px; top: -1px;}
-    50% {background-color: none; left: 10px; top: -2px;}
-    100% {background-color: none; left: 5px; top: -1px;}
+    0% {
+        background-position: none;
+        left: 0px;
+        top: 0px;
+    }
+    25% {
+        background-color: none;
+        left: 5px;
+        top: 0px;
+    }
+    50% {
+        background-color: none;
+        left: 10px;
+        top: 0px;
+    }
+    100% {
+        background-color: none;
+        left: 5px;
+        top: 0px;
+    }
 }
 
-.msg span {
-    padding: 10px 20px;
+section .msg {
+    margin-right: 0;
+    display: block;
+    justify-content: center;
 }
 
 .msg {
     background-color: rgb(46, 27, 63);
-}
-
-.msg {
-    position: absolute;
-    bottom: 50px;
-    right: 300px;
     color: aliceblue;
-    font-size: 30px;
+    font-size: 20px;
     text-shadow: 2px 2px 5px rgb(250, 75, 6);
     font-family: fantasy;
-    font-size: 50px;
-    
-    //transform: rotatex(180deg);
+
+    .msg1 {
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+    }
+
+    .msg2 {
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+    }
 }
 
-.msg1 {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-}
-
-.msg2 {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-}
-
-button{
+button {
     width: 200px;
     text-transform: uppercase;
     font-family: fantasy;
     font-size: 20px;
     color: black;
     text-shadow: 2px 2px 5px white;
-    background-color: rgb(250, 75, 6)
+    background-color: rgb(250, 75, 6);
 }
 
-@media screen and (max-width: 1200px) { 
-   
-.pesonagens {
+@media screen and (min-width: 768px) {
+    .principal {
+        .front {
+            font-size: 50px;
+            position: relative;
+        }
+    }
+
+    .personagens {
         display: flex;
         justify-content: center;
-        
+        padding-top: 30px;
+        margin-bottom: 50px;
     }
 
-.yoda {
-    width: 20px;
+    img {
+        display: flex;
+        justify-content: center;
+        width: 350px;
+    }
+
+    section .msg {
+        padding: 5px;
+        display: block;
+        justify-content: center;
+
+        span {
+            display: flex;
+            justify-content: center;
+            font-size: 30px;
+            padding: 10px;
+        }
+    }
 }
 
+@media only screen and (min-width: 1024px) {
+    .principal {
+        .front {
+            font-size: 80px;
+            //margin: 30px;
+            position: relative;
+        }
     }
+
+    .personagens {
+        display: flex;
+        justify-content: center;
+        padding-top: 30px;
+        margin-bottom: 50px;
+
+        img {
+            display: flex;
+            justify-content: center;
+            width: 500px;
+        }
+    }
+
+    section .msg {
+        padding: 5px;
+        display: block;
+        justify-content: center;
+
+        span {
+            display: flex;
+            justify-content: center;
+            font-size: 50px;
+            padding: 10px;
+        }
+    }
+}
