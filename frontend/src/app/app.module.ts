@@ -10,11 +10,12 @@ import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
 import { FormContatosComponent } from './form-contatos/form-contatos.component';
 import { NotFoundComponent } from './sharedComponent/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
+
 //angular material
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { NavbarComponent } from './sharedComponent/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 

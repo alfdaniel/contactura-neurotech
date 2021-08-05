@@ -1,33 +1,29 @@
 <app-navbar></app-navbar>
 <section>
-    <div class="titulo">
-        <span> Novo Contato </span>
+    <div class="container_title">
+        <h1> FORMULÁRIO DE CONTATO </h1>
     </div>
 </section>
-
-<section class="formulario">
-    <form>
-        <div>
-            <mat-card-content>
-                <mat-form-field class="name">
-                    <input matInput placeholder="Name:" type="text">
-                </mat-form-field>
-                <mat-form-field class="fone">
-                    <input matInput placeholder="Fone:" type="number">
-                </mat-form-field>
-                <mat-form-field class="email">
-                    <input matInput placeholder="Email:" type="email">
-                </mat-form-field>
-            </mat-card-content>
+<section>
+    <form [formGroup]="formContatos">
+        <div class="grid-container">
+            <div>
+                <span>Nome:</span>
+                <input formControlName="name" type="text" name="nome">
+            </div>
+            <div>
+                <span>Telefone:</span>
+                <input formControlName="phone" type="text" name="phone">
+            </div>
         </div>
-
-        <div class="button_new_contact">
-            <mat-card-actions>
-                <button mat-raised-button color="primary">Salvar Contato</button>
-                <button mat-raised-button color="primary">Cancelar</button>
-            </mat-card-actions>
+        <div class="grid_container_email">
+            <div>
+                <span>Email:</span>
+                <input formControlName="email" type="email" name="email">
+            </div>
+            <div>
+                <button mat-raised-button color="primary" (click)="save()">Salvar Contato</button>
+            </div>
         </div>
-
     </form>
-
 </section>

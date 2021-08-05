@@ -8,7 +8,8 @@
 <!-- BOTÃO DE ADCIONAR CONTATO -->
 <section>
     <div class="container_buttons">
-        <button mat-raised-button routerLink="/cadastro-contato">NOVO CONTATO</button>
+        <button mat-raised-button routerLink="/cadastro-contato">Criar Contato</button>
+        <button mat-raised-button routerLink="/cadastro-usuario">Criar Usuário</button>
     </div>
 </section>
 <!-- TABELA DE LISTA DE CONTATOS -->
@@ -30,7 +31,10 @@
                     <td data-label="Nome">{{contact.name}}</td>
                     <td data-label="Email">{{contact.email}}</td>
                     <td data-label="Fone">{{contact.phone}}</td>
-                    <td>menu</td>
+                    <td><div>
+                        <mat-icon (click)="deleteContacts(contact)">delete</mat-icon>
+                        <mat-icon (click)="editContatos(contact)">edit</mat-icon>
+                    </div></td>
                 </tr>
             </tbody>
         </table>

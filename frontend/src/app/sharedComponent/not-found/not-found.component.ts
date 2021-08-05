@@ -19,7 +19,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   listCont(){
-    this.router.navigate(['/lista-usuarios'])
+    this.router.navigate(['/lista-contatos'])
   }  
 
 }

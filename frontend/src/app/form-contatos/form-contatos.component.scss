@@ -1,62 +1,38 @@
-.titulo {
-    display: grid;
+.container_title {
+    display: flex;
     justify-content: center;
-    padding: 40px;
-    font-size: 25px;
-    text-transform: uppercase;
-    color: gray;
+    padding: 20px;
 }
 
-.name {
-    grid-area: name;
-}
-.fone {
-    grid-area: fone;
-}
-.email {
-    grid-area: email;
-}
-
-mat-card-content {
+.grid-container{
     display: grid;
-    justify-content: center;
-    grid-template-columns: 45% 45%;
-    grid-template-areas:
-        "name fone"
-        "email email";
+    grid-template-columns: auto auto;
+    grid-gap: 3.5em;
+    margin: 20px;
 
-    mat-form-field {
-        padding: 10px;
+    input{
+        width: 100%;
     }
+}
 
-    div {
+.grid_container_email {
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 2.5em;
+    margin: 20px;
+
+    input{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 767px){
+    
+    .grid-container{
         display: grid;
-        padding: 5px 10px;
-    }
-}
-
-.button_new_contact {
-    display: grid;
-    justify-content: center;
-    width: 100%;
-    grid-template-columns: 45% 45%;
-}
-
-button {
-    margin: 10px;
-}
-
-@media screen and (max-width: 767px) {
-    mat-card-content {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "name"
-            "fone"
-            "email";
+        grid-template-columns: auto;
+        grid-gap: 1.5em;
+        margin: 20px;
     }
 
-    .button_new_contact {
-        display: flex;
-    }
 }
