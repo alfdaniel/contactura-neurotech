@@ -32,16 +32,36 @@ export class FormContatosComponent implements OnInit {
     });
   }
 
+  // ngOnDestroy(){
+  //     this.formContatos.reset();
+  // }
+
+  // load() {
+    
+  //     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  //       this.router.navigate(['cadastro-contato']);
+  //     });
+  // }
+
+  // load() {
+    
+  //   console.log('sessionStorage', sessionStorage);
+  //   (sessionStorage.refresh == 'true' || !sessionStorage.refresh) 
+  //       && location.reload();
+  //   sessionStorage.refresh = false;
+  // }
+
   save() {
     console.log('form');
     if (this.formContatos.valid){
+      setTimeout(function(){
       Swal.fire({
         icon: 'success',
         title: 'Eeeeeba..',
-        text: 'Contato criado com sucesso!'
+        text: 'Contato criado com sucesso!',
+        timer: 5000
       });
-      // this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-      //   this.router.navigate(['/lista-contatos']));
+    },2000);
       this.router.navigate(['/lista-contatos']);
     } else {
       Swal.fire({
