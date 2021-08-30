@@ -19,7 +19,7 @@ public class Contactura {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String nome;
+	private String name;
 	private String email;
 	private String phone;
 	
