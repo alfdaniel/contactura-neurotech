@@ -5,3 +5,8 @@ export interface User {
     password: string;
     admin: boolean;
 }
+
+export interface Authentication{
+    username: string;
+    password: string;
+}

@@ -1,3 +1,5 @@
+import { UsuariosService } from './../service/usuarios/usuarios.service';
+import { Authentication } from './../models/user';
 import { NavbarComponent } from './../sharedComponent/navbar/navbar.component';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -15,11 +17,11 @@ export class LoginComponent implements OnInit {
     username: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   });
+  authentication: Authentication;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public usuariosService: UsuariosService) { }
 
   ngOnInit(): void {
-    console.log('olá, componente iniciado')
     document.querySelector('html').style.background = 'linear-gradient(to right, red , blue)'
   }
 
@@ -29,9 +31,14 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      localStorage.setItem('token', 'coxinhanovaiorkina');
-      localStorage.setItem('admin', 'true');
-      this.router.navigate(['/lista-contatos']);
+      this.authentication = this.loginForm.value;
+      this.usuariosService.authentication(this.authentication).subscribe(
+        data => {
+          localStorage.setItem('token', data);
+          localStorage.setItem('admin', 'true');
+          this.router.navigate(['/lista-contatos']);
+        }
+      );
     } else {
       Swal.fire({
         icon: 'error',
