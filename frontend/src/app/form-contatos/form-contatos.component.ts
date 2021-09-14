@@ -1,3 +1,4 @@
+import { Contacts } from './../models/contacts';
 import { ContatosService } from './../service/contatos/contatos.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -17,6 +18,8 @@ export class FormContatosComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required])
   });
+
+  contact: Contacts;
 
   constructor(private router: Router, public contatosService: ContatosService) { }
 
@@ -54,15 +57,20 @@ export class FormContatosComponent implements OnInit {
   save() {
     console.log('form');
     if (this.formContatos.valid){
-      setTimeout(function(){
-      Swal.fire({
-        icon: 'success',
-        title: 'Eeeeeba..',
-        text: 'Contato criado com sucesso!',
-        timer: 5000
-      });
-    },2000);
-      this.router.navigate(['/lista-contatos']);
+      if (this.contact){
+        this.edit(this.contact);
+      }else{
+        this.create();
+      }
+    //   setTimeout(function(){
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Eeeeeba..',
+    //     text: 'Contato criado com sucesso!',
+    //     timer: 5000
+    //   });
+    // },2000);
+    //   this.router.navigate(['/lista-contatos']);
     } else {
       Swal.fire({
         icon: 'error',
@@ -72,5 +80,70 @@ export class FormContatosComponent implements OnInit {
       });
     }
   }
+
+  validation(){
+    if (this.formContatos.valid){
+      if (this.contact){
+        this.edit(this.contact);
+      }else{
+        this.create();
+      }
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Ooooops..',
+        text: 'Cadastro não realizado,' +
+        'preencha corretamente todos os campos'
+      });
+    }
+  }
+
+  edit(contact: Contacts){
+    contact.name =  this.formContatos.get('name').value;
+    contact.phone = this.formContatos.get('phone').value;
+    contact.email =  this.formContatos.get('email').value;
+    this.contatosService.updateContact(contact).subscribe(
+      data => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Eeeeeba..',
+          text: 'Contato editado com sucesso!'
+        });
+        this.router.navigate(['/lista-contatos']);
+        },
+        error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ooops..',
+            text: 'Erro ao editar contato!'
+          });
+        }
+    );
+  }
+
+  create(){
+    this.contatosService.createContacts(this.formContatos.value).subscribe(
+      data => {
+        setTimeout(function(){
+          Swal.fire({
+            icon: 'success',
+            title: 'Eeeeeba..',
+            text: 'Contato criado com sucesso!',
+            timer: 5000
+          });
+        },2000);
+          this.router.navigate(['/lista-contatos']);
+        },
+        error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ooops..',
+            text: 'Erro ao criar contato!'
+          });
+        }
+    );
+  }
+
+
 
 }

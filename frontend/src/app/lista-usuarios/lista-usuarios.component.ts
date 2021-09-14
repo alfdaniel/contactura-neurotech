@@ -12,38 +12,53 @@ import Swal from 'sweetalert2';
 export class ListaUsuariosComponent implements OnInit {
 
   userList: User[];
-  collection = {count: 10, data: []}
+  //collection = { count: 10, data: [] }
 
   constructor(private usuariosService: UsuariosService, private router: Router) { }
 
   ngOnInit(): void {
-    this.populationUsers();
+    //this.populationUsers();
+    this.getUsers();
   }
 
-  //métodopara preencher os contatos com dados macodos
-  populationUsers(){
-    for (let i = 0; i < this.collection.count; i++) {
-      this.collection.data.push({
-        id: i,
-        name: 'teste' + i,
-        username: 'email' + i + '@contactura.com',
-        admin: 'true'
-      });     
-    }
-    this.userList = this.collection.data;
-    console.log(this.userList);
+  getUsers() {
+    this.usuariosService.getUser().subscribe(
+      data => {
+        this.userList = data;
+        console.log(data);
+      },
+      error => {
+        this.userList = [];
+        console.log(error);
+      }
+    );
   }
 
-  editUser(user: User){
-    console.log('edit esta funcionando', user );
+  // //métodopara preencher os usuários com dados macodos
+  // populationUsers(){
+  //   for (let i = 0; i < this.collection.count; i++) {
+  //     this.collection.data.push({
+  //       id: i,
+  //       name: 'teste' + i,
+  //       username: 'email' + i + '@contactura.com',
+  //       admin: 'true'
+  //     });     
+  //   }
+  //   this.userList = this.collection.data;
+  //   console.log(this.userList);
+  // }
+
+  editUser(user: User) {
+    //console.log('edit esta funcionando', user);
     this.usuariosService.getUserList(user);
     this.router.navigate(['/cadastro-usuario']);
   }
 
+ 
   deleteUser(user: User){
     Swal.fire({
-      title: 'Você tem certeza?', 
-      text: 'Deseja mesmo deletar?',
+      title: 'Você tem certeza?',
+      text: 'Deseja memso deletar?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -51,12 +66,22 @@ export class ListaUsuariosComponent implements OnInit {
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não'
     }).then((result) => {
-      if (result.isConfirmed){
-        Swal.fire(
-          'Deletado com sucesso!'
+      if (result.isConfirmed) {
+        this.usuariosService.deleteUsers(user.id).subscribe(
+          data => {
+            Swal.fire(
+              'Deletado com sucesso!'
+            );
+            this.getUsers();
+          }
         );
       }
     });
   }
-  
+
+  goToCreate() {
+    this.router.navigate(['/user']);
+  }
+
+
 }

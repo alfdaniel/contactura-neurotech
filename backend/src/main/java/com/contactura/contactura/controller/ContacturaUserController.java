@@ -1,5 +1,9 @@
 package com.contactura.contactura.controller;
 
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,12 +33,21 @@ public class ContacturaUserController {
 	@Autowired
 	private ContacturaUserRepository repository;
 
-//	@RequestMapping("/login")
-//	@GetMapping
-//	public String login(HttpServletRequest request){
-//		String token = requ
-//	}
+	@RequestMapping("/login")
+	@GetMapping
+	public List<String> login(HttpServletRequest request){
+		
+		String authorization = request.getHeader("Authorization").substring("Basic".length()).trim();
+		byte[] baseCred = Base64.getDecoder().decode(authorization);
+		String credentialsParsed = new String(baseCred, StandardCharsets.UTF_8);
+		String[] values = credentialsParsed.split(":", 2);
+		ContacturaUser user = repository.findByUsername(values[0]);
+		String token = request.getHeader("Authorization").substring("Basic".length()).trim();
+		return Arrays.asList(Boolean.toString(user.isAdmin()), token);
+		
+	}
 	
+
 	
 	// Lista todos usuários http://localhost:8088/user
 			@GetMapping
@@ -42,6 +55,7 @@ public class ContacturaUserController {
 				return repository.findAll();
 			}
 			
+		
 			
 	// Lista usuários por id http://localhost:8088/id
 			@GetMapping(value = "{id}")
@@ -94,5 +108,7 @@ public class ContacturaUserController {
 				String passwordParaCriptografar = passwordEncoder.encode(password);			
 				return passwordParaCriptografar;
 			}
+			
+			
 			
 }

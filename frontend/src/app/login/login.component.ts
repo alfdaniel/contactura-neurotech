@@ -34,8 +34,11 @@ export class LoginComponent implements OnInit {
       this.authentication = this.loginForm.value;
       this.usuariosService.authentication(this.authentication).subscribe(
         data => {
-          localStorage.setItem('token', data);
-          localStorage.setItem('admin', 'true');
+          console.log(data);
+          localStorage.setItem('token', data.admin);
+          localStorage.setItem('admin', data.token);
+          localStorage.setItem('username', this.authentication.username);
+          localStorage.setItem('password', this.authentication.password);
           this.router.navigate(['/lista-contatos']);
         }
       );

@@ -14,4 +14,6 @@ public interface ContacturaRepository extends JpaRepository<Contactura, Long> {
 	@Query(value="SELECT * FROM contactura", nativeQuery = true)
 	List<Contactura> findAllContact();
 	
+	//SELECT * FROM contactura.contactura_user WHERE username like '%query%';
+	
 }

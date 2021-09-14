@@ -18,19 +18,17 @@
                 <mat-form-field>
                     <input formControlName="name" matInput placeholder="Nome:" type="text">
                 </mat-form-field>
-                <div>
+                <!-- <div>
                     <mat-checkbox>Administrador?</mat-checkbox>
-                </div>
+                </div> -->
             </mat-card-content>
         </div>
 
         <div class="button_new_contact">
             <mat-card-actions>
-                <button mat-raised-button color="primary" (click)="save()">Salvar Contato</button>
+                <button mat-raised-button color="primary" (click)="validation()">Salvar Contato</button>
                 <button mat-raised-button color="primary" (click)="cancelar()">Cancelar</button>
             </mat-card-actions>
         </div>
-        
     </form>
-
 </section>

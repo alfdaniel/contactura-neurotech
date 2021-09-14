@@ -19,22 +19,19 @@ export class FormUsuariosComponent implements OnInit, OnDestroy {
     username: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   })
-
-
-
-  
+ 
   constructor(private router: Router, public usuariosService: UsuariosService) { }
   
   ngOnInit(): void {
     this.usuariosService.botaoEdit.subscribe(edit => {
-      if (edit !== null) {
+        if (edit !== null){
         console.log(edit, 'valor do edit');
         this.formUser.get('name').setValue(edit.name);
         this.formUser.get('username').setValue(edit.username);
         this.formUser.get('password').setValue(edit.password);
         //this.formUser.get('admin').setValue(edit.admin);
-      }
-    });
+        }
+      });
   }
   
   ngOnDestroy() {
@@ -44,27 +41,70 @@ export class FormUsuariosComponent implements OnInit, OnDestroy {
   }
   
 
-  save() {
-    console.log('form');
-    if (this.formUser.valid) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Eeeeeba..',
-        text: 'Usuário criado com sucesso!'
-      });
-      this.router.navigate(['/lista-usuarios']);
-    } else {
+  validation(){
+    if (this.formUser.valid){
+      if (this.user){
+        console.log('editado');
+        this.edit(this.user);
+      }else{
+        console.log('criado');
+        this.create();
+      }
+    }else{
       Swal.fire({
         icon: 'error',
-        title: 'Ooooops...',
-        text: 'Cadastro não realizado, ' +
-          'preencha corretamente todos os campos'
+        title: 'Ooooops..',
+        text: 'Cadastro não realizado,' +
+        'preencha corretamente todos os campos'
       });
     }
   }
 
+  edit(user: User){
+    user.name = this.formUser.get('name').value;
+    user.username = this.formUser.get('username').value;
+    user.password = this.formUser.get('password').value;
+    this.usuariosService.updateUsers(user).subscribe(
+      data => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Eeeeeba..',
+          text: 'Usuário editado com sucesso!'
+        });
+        this.router.navigate(['lista-usuarios']);
+        },
+        error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ooops..',
+            text: 'Erro ao editar usuário!'
+          });
+        }
+    );
+  }
+
+  create(){
+    this.usuariosService.createUsers(this.formUser.value).subscribe(
+      data => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Eeeeeba..',
+          text: 'Usuário criado com sucesso!'
+        });
+        this.router.navigate(['lista-usuarios']);
+        },
+        error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ooops..',
+            text: 'Erro ao criar usuário!'
+          });
+        }
+    );
+  }
+
   cancelar() {
-    this.router.navigate(['/lista-usuarios'])
+    this.router.navigate(['lista-usuarios'])
   }
 
 

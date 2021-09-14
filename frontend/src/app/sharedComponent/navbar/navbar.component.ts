@@ -6,25 +6,27 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.putEventsMenu();
   }
-  
-  putEventsMenu(){
+
+  putEventsMenu() {
     const menuDesktop = document.getElementById('menu-desktop');
     const menuMobile = document.getElementById('menu-mobile');
-    menuMobile.addEventListener('click', function(){
+    menuMobile.addEventListener('click', function () {
       menuDesktop.classList.toggle('active');
     });
   }
 
-logout(){
-  localStorage.removeItem('token');
-  this.router.navigate(['/login']);
-}
-
+  logout() {
+    localStorage.removeItem('admin');
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+    this.router.navigate(['login']);
+  }
 }

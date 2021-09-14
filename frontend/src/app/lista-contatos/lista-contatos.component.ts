@@ -16,73 +16,105 @@ export class ListaContatosComponent implements OnInit {
 
   constructor(private contatosService: ContatosService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.populationContacts();
-   
-  }
-
-  // ngAfterViewInit(): void {
-  //   window.location.reload();
-  //   console.log('carregado');
+  // ngOnInit(): void {
+  //   this.getContacts();
+  //   //this.populationContacts();
   // }
 
-  //métodopara preencher os contatos com dados macodos
-  populationContacts() {
-    for (let i = 0; i < this.collection.count; i++) {
-      this.collection.data.push({
-        id: i,
-        name: 'teste' + i,
-        email: 'email' + i + '@contactura.com',
-        phone: '(' + 0 + 8 + 1 + ')' + 9 + 1 + 1 + 1 + 1 + '-' + 1 + 1 + 1 + 1
-      });
-    }
-    this.contactsList = this.collection.data;
-    console.log(this.contactsList);
+  // // ngAfterViewInit(): void {
+  // //   window.location.reload();
+  // //   console.log('carregado');
+  // // }
+
+  // //métodopara preencher os contatos com dados macodos
+  // // populationContacts() {
+  // //   for (let i = 0; i < this.collection.count; i++) {
+  // //     this.collection.data.push({
+  // //       id: i,
+  // //       name: 'teste' + i,
+  // //       email: 'email' + i + '@contactura.com',
+  // //       phone: '(' + 0 + 8 + 1 + ')' + 9 + 1 + 1 + 1 + 1 + '-' + 1 + 1 + 1 + 1
+  // //     });
+  // //   }
+  // //   this.contactsList = this.collection.data;
+  // //   console.log(this.contactsList);
+  // // }
+
+  // //   load() {
+
+  // //     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  // //       this.router.navigate(['lista-contatos']);
+  // //     });
+  // // }
+
+  // // load() {
+  // //   console.log('sessionStorage', sessionStorage);
+  // //   (sessionStorage.refresh == 'true' || !sessionStorage.refresh)
+  // //     && location.reload();
+  // //   sessionStorage.refresh = false;
+  // // }
+
+
+  ngOnInit(): void {
+    // this.populateContacts();
+    this.getContacts();
   }
 
+  getContacts() {
+    this.contatosService.getContacts().subscribe(
+      data => {
+        this.contactsList = data;
+        console.log(data);
+      },
+      error => {
+        this.contactsList = [];
+        console.log(error);
+      }
+    );
+  }
+
+  // método para preencher os contatos com dados mocados
+  // populateContacts(){
+  //   for (let i = 0; i < this.collection.count; i++) {
+  //     this.collection.data.push({
+  //       id: i,
+  //       name: 'teste' + i,
+  //       email: 'email' + i + '@contactura.com',
+  //       phone: '(' + 0 + 8 +  1 + ')' + 9 + i + i + i + i + '-' + i + i + i + i
+  //     });
+  //   }
+  //   this.contactsList = this.collection.data;
+  //   // console.log(this.contactsList);
+  // }
 
   editContatos(contatos: Contacts) {
     console.log('edit esta funcionando', contatos);
     this.contatosService.getContactsList(contatos);
     this.router.navigate(['/cadastro-contato']);
-
   }
 
-  //   load() {
-    
-  //     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-  //       this.router.navigate(['lista-contatos']);
-  //     });
-  // }
-
-  // load() {
-  //   console.log('sessionStorage', sessionStorage);
-  //   (sessionStorage.refresh == 'true' || !sessionStorage.refresh)
-  //     && location.reload();
-  //   sessionStorage.refresh = false;
-  // }
-
   deleteContacts(contatos: Contacts) {
-    setTimeout(function () {
-      Swal.fire({
-        title: 'Você tem certeza?',
-        text: 'Deseja mesmo deletar?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim',
-        cancelButtonText: 'Não',
-        timer: 5000
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Deletado com sucesso!'
-          );
-        }
-      });
-
-    }, 1000);
+    Swal.fire({
+      title: 'Você tem certeza?',
+      text: 'Deseja memso deletar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.contatosService.deleteContacts(contatos.id).subscribe(
+          data => {
+            Swal.fire(
+              String(data),
+            );
+            this.getContacts();
+          }
+        );
+      }
+    });
   }
 
 
