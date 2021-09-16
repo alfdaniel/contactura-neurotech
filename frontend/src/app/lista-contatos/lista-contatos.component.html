@@ -11,6 +11,8 @@
         <button mat-raised-button routerLink="/cadastro-contato">Criar Contato</button>
         <button mat-raised-button routerLink="/cadastro-usuario">Criar Usuário</button>
     </div>
+    <div>
+    </div>
 </section>
 <!-- TABELA DE LISTA DE CONTATOS -->
 <section>
@@ -23,7 +25,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Fone</th>
                     <th>Menu</th>
-                </tr>    
+                </tr>
             </thead>
             <!-- tbody -->
             <tbody>
@@ -31,10 +33,12 @@
                     <td data-label="Nome">{{contact.name}}</td>
                     <td data-label="Email">{{contact.email}}</td>
                     <td data-label="Fone">{{contact.phone}}</td>
-                    <td><div>
-                        <mat-icon (click)="deleteContacts(contact)">delete</mat-icon>
-                        <mat-icon (click)="editContatos(contact)">edit</mat-icon>
-                    </div></td>
+                    <td>
+                        <div>
+                            <mat-icon (click)="deleteContacts(contact)">delete</mat-icon>
+                            <mat-icon (click)="editContatos(contact)">edit</mat-icon>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

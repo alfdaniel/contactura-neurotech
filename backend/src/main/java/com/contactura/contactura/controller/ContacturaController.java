@@ -3,6 +3,7 @@ package com.contactura.contactura.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.contactura.contactura.model.Contactura;
@@ -73,21 +76,20 @@ public class ContacturaController {
 				}).orElse(ResponseEntity.notFound().build());
 	} 
 	
-//	
-//	@GetMapping(value = "/listcontact")
-//	public List listaContatos(){
-//		return repository.findAllContact();
-//	}
+	
+	@GetMapping(value = "/listcontact")
+	public List listaContatos(){
+		return repository.findAllContact();
+	}
+	
+	
+	// lista contatos por ID - http://localhost:8088/contactura/{email}
+	@GetMapping(value = "/email")
+	@ResponseBody
+	public List findByContactEmail (@RequestParam("email") String email){		
+		return repository.findByEmail(email);
+	}
 	
 	
 	
 }
-
-
-
-
-
-
-
-
-

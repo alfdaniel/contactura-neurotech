@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { EmailValidator } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -85,6 +86,22 @@ password = localStorage.getItem('password');
 
   findContactById(){
    
+  }
+
+  findContactByEmail(contact: Contacts){
+    const email = contact.email;
+    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(this.username + ':' + this.password)});
+    return this.http.get<Contacts[]>(this.api_url + 'contactura/email?email=' + email, {headers}).pipe(
+      map(
+        contactData => {
+          if (contactData){
+            return contactData;
+          }else{
+            return [];
+          }
+        }
+      )
+    );
   }
 
 

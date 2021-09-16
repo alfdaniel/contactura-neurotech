@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ContatosService } from './../service/contatos/contatos.service';
 import { Contacts } from './../models/contacts';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-contatos',
@@ -10,6 +11,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-contatos.component.scss']
 })
 export class ListaContatosComponent implements OnInit {
+
+  formContatos = new FormGroup({
+    email: new FormControl('', [Validators.email])   
+  });
 
   contactsList: Contacts[];
   collection = { count: 10, data: [] }
@@ -72,6 +77,8 @@ export class ListaContatosComponent implements OnInit {
       }
     );
   }
+
+
 
   // método para preencher os contatos com dados mocados
   // populateContacts(){

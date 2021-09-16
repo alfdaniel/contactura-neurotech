@@ -31,19 +31,19 @@ public class ContacturaApplication {
 		
 	}
 
-	@Bean
-	CommandLineRunner init(ContacturaRepository repository){
-		return args -> {
-			repository.deleteAll();
-			LongStream.range(1, 100).mapToObj(id -> {
-				Contactura c = new Contactura();
-				c.setName("Contactura User " + id);
-				c.setPhone("(081) 9" + id + id + id + id + "-" + id + id + id + id);
-				c.setEmail("contactura_user" + id + "@contactura.com");
-				return c;
-			}).map(record -> repository.save(record))
-			.forEach(System.out::println);
-		};
-	}
+//	@Bean
+//	CommandLineRunner init(ContacturaRepository repository){
+//		return args -> {
+//			repository.deleteAll();
+//			LongStream.range(1, 100).mapToObj(id -> {
+//				Contactura c = new Contactura();
+//				c.setName("Contactura User " + id);
+//				c.setPhone("(081) 9" + id + id + id + id + "-" + id + id + id + id);
+//				c.setEmail("contactura_user" + id + "@contactura.com");
+//				return c;
+//			}).map(record -> repository.save(record))
+//			.forEach(System.out::println);
+//		};
+//	}
 	
 }

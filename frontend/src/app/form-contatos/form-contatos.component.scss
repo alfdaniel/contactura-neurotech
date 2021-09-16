@@ -15,6 +15,10 @@
     }
 }
 
+button {
+    margin: 10px;
+}
+
 .grid_container_email {
     display: grid;
     grid-template-columns: auto;
@@ -33,6 +37,10 @@
         grid-template-columns: auto;
         grid-gap: 1.5em;
         margin: 20px;
+    }
+
+    .button_new_contact{
+        display: flex;
     }
 
 }

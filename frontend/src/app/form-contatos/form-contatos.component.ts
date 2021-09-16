@@ -14,9 +14,11 @@ import Swal from 'sweetalert2';
 export class FormContatosComponent implements OnInit {
 
   formContatos = new FormGroup({
+    id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required])
+    
   });
 
   contact: Contacts;
@@ -30,7 +32,7 @@ export class FormContatosComponent implements OnInit {
         this.formContatos.get('name').setValue(edit.name);
         this.formContatos.get('phone').setValue(edit.phone);
         this.formContatos.get('email').setValue(edit.email);
-        //this.formContatos.get('name').setValue(edit.name);
+        this.formContatos.get('id').setValue(edit.id);
       }
     });
   }
@@ -62,15 +64,6 @@ export class FormContatosComponent implements OnInit {
       }else{
         this.create();
       }
-    //   setTimeout(function(){
-    //   Swal.fire({
-    //     icon: 'success',
-    //     title: 'Eeeeeba..',
-    //     text: 'Contato criado com sucesso!',
-    //     timer: 5000
-    //   });
-    // },2000);
-    //   this.router.navigate(['/lista-contatos']);
     } else {
       Swal.fire({
         icon: 'error',
@@ -144,6 +137,8 @@ export class FormContatosComponent implements OnInit {
     );
   }
 
-
+  cancelar() {
+    this.router.navigate(['lista-contatos'])
+  }
 
 }

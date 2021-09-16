@@ -24,4 +24,6 @@ public class Contactura {
 	private String phone;
 	
 	
+	
+	
 }
