@@ -31,12 +31,12 @@ public class CustomUserDetailService implements UserDetailsService {
 				.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 		
 		
-		List<GrantedAuthority> autorityListAdmin = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
-		List<GrantedAuthority> autorityListUser = AuthorityUtils.createAuthorityList("ROLE_USER");
+		List<GrantedAuthority> authorityListAdmin = AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
+		List<GrantedAuthority> authorityListUser = AuthorityUtils.createAuthorityList("ROLE_USER");
 		
 
 		return new org.springframework.security.core.userdetails.User
-				(user.getUsername(), user.getPassword(), user.isAdmin() ? autorityListAdmin : autorityListUser);
+				(user.getUsername(), user.getPassword(), user.isAdmin() ? authorityListAdmin : authorityListUser);
 		
 	}
 	
