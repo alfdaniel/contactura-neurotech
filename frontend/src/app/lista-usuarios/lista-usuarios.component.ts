@@ -58,7 +58,7 @@ export class ListaUsuariosComponent implements OnInit {
   deleteUser(user: User){
     Swal.fire({
       title: 'Você tem certeza?',
-      text: 'Deseja memso deletar?',
+      text: 'Deseja mesmo deletar?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

@@ -19,7 +19,5 @@ public interface ContacturaRepository extends JpaRepository<Contactura, Long> {
 	
 	@Query(value="SELECT * FROM contactura.contactura e WHERE e.email= ?1", nativeQuery = true)
 	List<Contactura> findByEmail (String email);
-	
-	
-	
+		
 }

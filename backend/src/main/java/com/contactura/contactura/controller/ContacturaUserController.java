@@ -50,6 +50,7 @@ public class ContacturaUserController {
 	
 	// Lista todos usuários http://localhost:8088/user
 			@GetMapping
+			//@PreAuthorize("hasRole('ADMIN')")
 			public List findALL(){
 				return repository.findAll();
 			}

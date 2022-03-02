@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 //		http.authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll();
 //	}
-//
+
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();

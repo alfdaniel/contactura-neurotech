@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  api_url: 'https://contactura.herokuapp.com/'
+  production: true,
+  api_url: 'http://localhost:8081/'
 };
 
 /*
